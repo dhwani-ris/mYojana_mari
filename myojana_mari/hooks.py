@@ -10,6 +10,17 @@ app_license = "mit"
 
 # required_apps = []
 
+fixtures = [
+    # "mYojana Settings",
+    # "Report List",
+    # "SVA Report"
+    # "scheme application submitted",
+    # "Scheme Paid by",
+    # "Client Script",
+    # "Custom HTML Block",
+    # "Custom Field"
+
+]
 # Each item in the list will be shown as an app in the apps page
 # add_to_apps_screen = [
 # 	{
