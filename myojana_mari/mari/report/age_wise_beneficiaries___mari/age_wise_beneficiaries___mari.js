@@ -12,6 +12,7 @@ var filters = [
 		"label": __("To Date")
 	},
 ];
+
 if (frappe.user_roles.includes("Admin")) {
 	filters.push(
 		{
