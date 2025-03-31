@@ -1,0 +1,44 @@
+{
+ "chart_name": "Total Demands Applied",
+ "chart_type": "Report",
+ "creation": "2024-12-03 14:43:14.716427",
+ "custom_options": "{\"x_field\": \"centre_name\", \"chart_type\": \"Bar\", \"y_axis_fields\": [{\"idx\": 1, \"__islocal\": true, \"y_field\": \"total_demands\", \"name\": \"row 1\"}, {\"idx\": 2, \"__islocal\": true, \"y_field\": \"open_demands\", \"name\": \"row 2\"}, {\"idx\": 3, \"__islocal\": true, \"y_field\": \"submitted_demands\", \"name\": \"row 3\"}, {\"idx\": 4, \"__islocal\": true, \"y_field\": \"completed_demands\", \"name\": \"row 4\"}, {\"idx\": 5, \"__islocal\": true, \"y_field\": \"rejected_demands\", \"name\": \"row 5\"}, {\"idx\": 6, \"__islocal\": true, \"y_field\": \"closed_demands\", \"name\": \"row 6\"}], \"y_fields\": [\"total_demands\", \"open_demands\", \"submitted_demands\", \"completed_demands\", \"rejected_demands\", \"closed_demands\"], \"colors\": [null, null, null, null, null, null]}",
+ "docstatus": 0,
+ "doctype": "Dashboard Chart",
+ "filters_json": "{}",
+ "group_by_type": "Count",
+ "idx": 1,
+ "is_public": 0,
+ "is_standard": 1,
+ "modified": "2025-03-31 15:46:22.388281",
+ "modified_by": "Administrator",
+ "module": "Mari",
+ "name": "Total Demands Applied",
+ "number_of_groups": 0,
+ "owner": "Administrator",
+ "report_name": "Centre wise demands",
+ "roles": [],
+ "time_interval": "Yearly",
+ "timeseries": 0,
+ "timespan": "Last Year",
+ "type": "Bar",
+ "use_report_chart": 0,
+ "x_field": "centre_name",
+ "y_axis": [
+  {
+   "y_field": "total_demands"
+  },
+  {
+   "y_field": "open_demands"
+  },
+  {
+   "y_field": "submitted_demands"
+  },
+  {
+   "y_field": "completed_demands"
+  },
+  {
+   "y_field": "rejected_demands"
+  }
+ ]
+}
