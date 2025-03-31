@@ -1,0 +1,171 @@
+{
+ "actions": [],
+ "autoname": "autoincrement",
+ "creation": "2024-11-12 22:52:16.741016",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "name_of_the_child_from_beneficiary_profiling",
+  "name_of_the_child",
+  "household_id",
+  "age",
+  "family_phone_number",
+  "alternative_phone_number",
+  "latest_education_level",
+  "drop_year",
+  "last_class",
+  "latest_school",
+  "name_of_the_school",
+  "desired_class_enrollment",
+  "cluster",
+  "slum",
+  "follow_up_status",
+  "childs_follow_up_tab",
+  "table_kiit"
+ ],
+ "fields": [
+  {
+   "fieldname": "name_of_the_child_from_beneficiary_profiling",
+   "fieldtype": "Link",
+   "label": "Name of the Child (From Beneficiary Profiling)",
+   "options": "Beneficiary Profiling"
+  },
+  {
+   "fetch_from": "name_of_the_child_from_beneficiary_profiling.name_of_the_beneficiary",
+   "fieldname": "name_of_the_child",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Name of the Child ",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "name_of_the_child_from_beneficiary_profiling.contact_number",
+   "fieldname": "household_id",
+   "fieldtype": "Data",
+   "label": "Household ID"
+  },
+  {
+   "fetch_from": "name_of_the_child_from_beneficiary_profiling.completed_age",
+   "fieldname": "age",
+   "fieldtype": "Data",
+   "label": "Age",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "name_of_the_child_from_beneficiary_profiling.custom_custon_contact_number",
+   "fieldname": "family_phone_number",
+   "fieldtype": "Data",
+   "label": "Family Phone Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "alternative_phone_number",
+   "fieldtype": "Data",
+   "label": "Alternative Phone Number"
+  },
+  {
+   "fetch_from": "name_of_the_child_from_beneficiary_profiling.custom_class_completed",
+   "fetch_if_empty": 1,
+   "fieldname": "latest_education_level",
+   "fieldtype": "Select",
+   "label": "Latest Education Level",
+   "options": "\nNever\nDropped\nAnganwadi Schools\nPre- Primary\n1st Class\n2nd Class\n3rd Class\n4th Class\n5th Class\n6th Class\n7th Class\n8th Class\n9th Class\n10th Class\nIntermediate\nDiploma\nGraduation\nPost graduation",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.latest_education_level ==\"Dropped\"",
+   "fieldname": "drop_year",
+   "fieldtype": "Data",
+   "label": "Drop Year"
+  },
+  {
+   "depends_on": "eval:doc.latest_education_level ==\"Dropped\"",
+   "fieldname": "last_class",
+   "fieldtype": "Select",
+   "label": "Last Class ",
+   "mandatory_depends_on": "eval:doc.education_level ==\"Dropped\"",
+   "options": "\nAnganwadi Schools\nPre- Primary\n1st Class\n2nd Class\n3rd Class\n4th Class\n5th Class\n6th Class\n7th Class\n8th Class\n9th Class\n10th Class\nIntermediate\nDiploma\nGraduation\nPost graduation"
+  },
+  {
+   "fieldname": "latest_school",
+   "fieldtype": "Link",
+   "label": "Latest School",
+   "options": "School Master",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.school_type ==\"Private\" || doc.school_type ==\"Other\"",
+   "fieldname": "name_of_the_school",
+   "fieldtype": "Data",
+   "label": "Name of the School",
+   "mandatory_depends_on": "eval:doc.school_type ==\"Private\" || doc.school_type ==\"Other\""
+  },
+  {
+   "fieldname": "desired_class_enrollment",
+   "fieldtype": "Select",
+   "label": "Desired Class Enrollment",
+   "options": "\nAnganwadi Schools\nPre- Primary\n1st Class\n2nd Class\n3rd Class\n4th Class\n5th Class\n6th Class\n7th Class\n8th Class\n9th Class\n10th Class\nIntermediate\nDiploma\nGraduation\nPost graduation",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "name_of_the_child_from_beneficiary_profiling.ward",
+   "fieldname": "cluster",
+   "fieldtype": "Link",
+   "label": "Cluster",
+   "options": "Block",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "name_of_the_child_from_beneficiary_profiling.name_of_the_settlement",
+   "fieldname": "slum",
+   "fieldtype": "Link",
+   "label": "Slum",
+   "options": "Village",
+   "reqd": 1
+  },
+  {
+   "fieldname": "follow_up_status",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Follow Up Status",
+   "options": "\nYes\nNo\nPending\nClosed"
+  },
+  {
+   "fieldname": "childs_follow_up_tab",
+   "fieldtype": "Tab Break",
+   "label": "Child's Follow Up"
+  },
+  {
+   "fieldname": "table_kiit",
+   "fieldtype": "Table",
+   "options": "Child Follow Up"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-03-31 10:21:22.747157",
+ "modified_by": "Administrator",
+ "module": "Mari",
+ "name": "Children Profiling",
+ "naming_rule": "Autoincrement",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

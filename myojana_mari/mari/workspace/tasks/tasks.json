@@ -1,0 +1,60 @@
+{
+ "app": "myojana_mari",
+ "charts": [],
+ "content": "[{\"id\":\"9Qffl36Kr6\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Overall task status</span>\",\"col\":12}},{\"id\":\"exvu3cwbXQ\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Tasks\",\"col\":6}},{\"id\":\"WafumRsa71\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Open Tasks\",\"col\":6}},{\"id\":\"pAjbHwFgEU\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Cancelled Tasks\",\"col\":6}},{\"id\":\"wMbWBtIJ5S\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Closed Tasks\",\"col\":6}},{\"id\":\"2RPFHXnV55\",\"type\":\"paragraph\",\"data\":{\"text\":\"<b>Today task status</b>\",\"col\":12}},{\"id\":\"GCcCVQDbw5\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Today All Tasks\",\"col\":4}},{\"id\":\"5jYQYTFzIi\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Today Closed Tasks\",\"col\":4}},{\"id\":\"Hy3jfqaLbV\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Today Cancelled Tasks\",\"col\":4}}]",
+ "creation": "2024-11-16 11:01:59.959201",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "list-alt",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Tasks",
+ "links": [],
+ "modified": "2025-03-31 11:03:09.271033",
+ "modified_by": "Administrator",
+ "module": "Mari",
+ "name": "Tasks",
+ "number_cards": [
+  {
+   "label": "Total Tasks",
+   "number_card_name": "Total Tasks"
+  },
+  {
+   "label": "Today All Tasks",
+   "number_card_name": "Today All Tasks"
+  },
+  {
+   "label": "Today Closed Tasks",
+   "number_card_name": "Today Closed Tasks"
+  },
+  {
+   "label": "Total Open Tasks",
+   "number_card_name": "Total Open Tasks"
+  },
+  {
+   "label": "Today Cancelled Tasks",
+   "number_card_name": "Today Cancelled Tasks"
+  },
+  {
+   "label": "Total Cancelled Tasks",
+   "number_card_name": "Total Cancelled Tasks"
+  },
+  {
+   "label": "Total Closed Tasks",
+   "number_card_name": "Total Closed Tasks"
+  }
+ ],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 12.0,
+ "shortcuts": [],
+ "title": "Tasks",
+ "type": "Workspace"
+}

@@ -1,0 +1,100 @@
+{
+ "app": "myojana_mari",
+ "charts": [],
+ "content": "[{\"id\":\"iFo5sSoD_d\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Schools</span>\",\"col\":6}},{\"id\":\"gHfxvqRmkA\",\"type\":\"custom_block\",\"data\":{\"custom_block_name\":\"Add childrean\",\"col\":6}},{\"id\":\"W9fD2pLYZD\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Registered Children\",\"col\":6}},{\"id\":\"7S67QXf6FU\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Conversions\",\"col\":6}},{\"id\":\"feY0BXnUUn\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Pending Conversion Status\",\"col\":6}},{\"id\":\"102WHXymYi\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Applications by MARI\",\"col\":6}},{\"id\":\"ptftjWVUzQ\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"gNn338rI6s\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Navodyam Vidhyalayam Conversions\",\"col\":4}},{\"id\":\"RVGOR9N7Hg\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Mahatma Gandhi Jyothi Bhapule Conversions\",\"col\":4}},{\"id\":\"Ur8i-9U-P_\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Telangana State Tribal Welfare Residential Institutes\",\"col\":4}},{\"id\":\"UCC9Cx8lD2\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Telangana State Social Welfare Residential Institute\",\"col\":4}},{\"id\":\"B-sUuRaegq\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"TS Model Schools\",\"col\":4}},{\"id\":\"jFaglO5i9o\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Kasturba Gandi Balika Vidyalaya (Residential Schools)\",\"col\":4}},{\"id\":\"rL7hKwsJd4\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Kendriya Vidhyalaya\",\"col\":4}},{\"id\":\"_PFQThiYi9\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Zila Praja Parishad\",\"col\":4}},{\"id\":\"qQvIxqf0VK\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Mandal Praja Parishad\",\"col\":4}},{\"id\":\"Y7-e6oaoSw\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Government High School\",\"col\":4}},{\"id\":\"66adL4r45Z\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Government Primary School\",\"col\":4}},{\"id\":\"k5m_ujDPO4\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Any Government Aided Schools\",\"col\":4}}]",
+ "creation": "2024-11-13 07:38:57.921797",
+ "custom_blocks": [
+  {
+   "custom_block_name": "Add childrean",
+   "label": "Add childrean"
+  }
+ ],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "idx": 2,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Schools",
+ "links": [],
+ "modified": "2025-03-31 11:02:29.899449",
+ "modified_by": "Administrator",
+ "module": "Mari",
+ "name": "Schools",
+ "number_cards": [
+  {
+   "label": "Pending Conversion Status",
+   "number_card_name": "Pending Conversion Status"
+  },
+  {
+   "label": "Mahatma Gandhi Jyothi Bhapule Conversions",
+   "number_card_name": "Mahatma Gandhi Jyothi Bhapule Conversions"
+  },
+  {
+   "label": "TS Model Schools",
+   "number_card_name": "TS Model Schools"
+  },
+  {
+   "label": "Registered Children",
+   "number_card_name": "Registered Children"
+  },
+  {
+   "label": "Telangana State Tribal Welfare Residential Institutes",
+   "number_card_name": "Telangana State Tribal Welfare Residential Institutes"
+  },
+  {
+   "label": "Kasturba Gandi Balika Vidyalaya (Residential Schools)",
+   "number_card_name": "Kasturba Gandi Balika Vidyalaya (Residential Schools)"
+  },
+  {
+   "label": "Telangana State Social Welfare Residential Institute",
+   "number_card_name": "Telangana State Social Welfare Residential Institute"
+  },
+  {
+   "label": "Government High School",
+   "number_card_name": "Government High School"
+  },
+  {
+   "label": "Total Applications by MARI",
+   "number_card_name": "Total Applications by MARI"
+  },
+  {
+   "label": "Kendriya Vidhyalaya",
+   "number_card_name": "Kendriya Vidhyalaya"
+  },
+  {
+   "label": "Navodyam Vidhyalayam Conversions",
+   "number_card_name": "Navodyam Vidhyalayam Conversions"
+  },
+  {
+   "label": "Total Conversions",
+   "number_card_name": "Total Conversions"
+  },
+  {
+   "label": "Government Primary School",
+   "number_card_name": "Government Primary School"
+  },
+  {
+   "label": "Any Government Aided Schools",
+   "number_card_name": "Any Government Aided Schools"
+  },
+  {
+   "label": "Zila Praja Parishad",
+   "number_card_name": "Zila Praja Parishad"
+  },
+  {
+   "label": "Mandal Praja Parishad",
+   "number_card_name": "Mandal Praja Parishad"
+  }
+ ],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 3.0,
+ "shortcuts": [],
+ "title": "Schools",
+ "type": "Workspace"
+}

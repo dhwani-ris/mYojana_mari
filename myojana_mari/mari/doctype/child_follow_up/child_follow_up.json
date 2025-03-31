@@ -1,0 +1,67 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-11-13 07:41:15.590333",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "family_phone_number",
+  "desired_class_enrollment",
+  "latest_school",
+  "desired_schools",
+  "conversion_and_follow_up"
+ ],
+ "fields": [
+  {
+   "fieldname": "family_phone_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Family Phone Number",
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "desired_class_enrollment",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Desired Class Enrollment",
+   "options": "\nAnganwadi Schools\nPre- Primary\n1st Class\n2nd Class\n3rd Class\n4th Class\n5th Class\n6th Class\n7th Class\n8th Class\n9th Class\n10th Class\nIntermediate\nDiploma\nGraduation\nPost graduation",
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "latest_school",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Latest School",
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "desired_schools",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Desired Schools",
+   "options": "School Master",
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "conversion_and_follow_up",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Conversion and Follow Up",
+   "options": "\nYes\nNo\nPending\nClosed"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-03-31 10:20:45.652778",
+ "modified_by": "Administrator",
+ "module": "Mari",
+ "name": "Child Follow Up",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

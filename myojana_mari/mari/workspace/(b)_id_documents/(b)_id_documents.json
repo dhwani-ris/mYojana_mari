@@ -1,0 +1,36 @@
+{
+ "app": "myojana_mari",
+ "charts": [],
+ "content": "[{\"id\":\"le8QWd-iO6\",\"type\":\"custom_block\",\"data\":{\"custom_block_name\":\"SVA Dashboard\",\"col\":12}}]",
+ "creation": "2024-11-12 22:43:45.285419",
+ "custom_blocks": [
+  {
+   "custom_block_name": "SVA Dashboard",
+   "label": "SVA Dashboard"
+  }
+ ],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "",
+ "idx": 38,
+ "indicator_color": "purple",
+ "is_hidden": 0,
+ "label": "(B) ID documents",
+ "links": [],
+ "modified": "2025-03-31 13:08:49.831060",
+ "modified_by": "Administrator",
+ "module": "Mari",
+ "name": "(B) ID documents",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 1.0,
+ "shortcuts": [],
+ "title": "(B) ID documents",
+ "type": "Workspace"
+}

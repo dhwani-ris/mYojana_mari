@@ -1,0 +1,77 @@
+{
+ "app": "myojana_mari",
+ "charts": [
+  {
+   "chart_name": "Total Demands Applied",
+   "label": "Total Demands Applied For (Total Completed, Total Open, Total Submitted, Total Closed, Total Rejected)"
+  },
+  {
+   "chart_name": "Gender Split of Total Demands",
+   "label": "Gender Split of Total Demands"
+  },
+  {
+   "chart_name": "Gender Split of Total Citizenship ID Demands",
+   "label": "Gender Split of Total Citizenship ID Demands"
+  },
+  {
+   "chart_name": "Gender Split of Total Demands Exclusive Citizenship ID Demands",
+   "label": "Gender Split of Total Demands Exclusive Citizenship ID Demands"
+  }
+ ],
+ "content": "[{\"id\":\"RaO17MxZ8h\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Beneficiaries Registered (Today)\",\"col\":4}},{\"id\":\"vURNzaXlGE\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"NUMBER OF BENEFICIARIES OUTREACH\",\"col\":4}},{\"id\":\"lkglqk-2-E\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"NUMBER OF HOUSEHOLD\",\"col\":4}},{\"id\":\"0zNymLZvPz\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total demands\",\"col\":12}},{\"id\":\"9fOgLNu5Pq\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Gender Split of Total Demands\",\"col\":12}},{\"id\":\"9sHgB0Apl8\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Demands for Citizenship Entitlement IDs\",\"col\":12}},{\"id\":\"TPZWHj1cdH\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Gender Split of Total Citizenship ID Demands\",\"col\":12}},{\"id\":\"PlBHR24T-K\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Demands Exclusive of Citizenship IDs\",\"col\":12}},{\"id\":\"xaOap3UkML\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Gender Split of Total Demands Exclusive Citizenship ID Demands\",\"col\":12}},{\"id\":\"GqN3XXjvsj\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Total Demands Applied For (Total Completed, Total Open, Total Submitted, Total Closed, Total Rejected)\",\"col\":12}}]",
+ "creation": "2024-11-16 11:22:16.744709",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "dashboard-list",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "(U) Dashboards",
+ "links": [],
+ "modified": "2025-03-31 11:02:49.505735",
+ "modified_by": "Administrator",
+ "module": "Mari",
+ "name": "(U) Dashboards",
+ "number_cards": [
+  {
+   "label": "Total Demands for Citizenship Entitlement IDs",
+   "number_card_name": "Total Demands for Citizenship Entitlement IDs"
+  },
+  {
+   "label": "Beneficiaries Registered (Today)",
+   "number_card_name": "Beneficiaries Registered (Today)"
+  },
+  {
+   "label": "Total demands",
+   "number_card_name": "Sum of Total_ascertaining_demands"
+  },
+  {
+   "label": "Demands Exclusive of Citizenship IDs",
+   "number_card_name": "Demands Exclusive of Citizenship IDs"
+  },
+  {
+   "label": "NUMBER OF BENEFICIARIES OUTREACH",
+   "number_card_name": "NUMBER OF BENEFICIARIES"
+  },
+  {
+   "label": "NUMBER OF HOUSEHOLD",
+   "number_card_name": "NUMBER OF FAMILIES"
+  }
+ ],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [
+  {
+   "role": "All"
+  }
+ ],
+ "sequence_id": 4.0,
+ "shortcuts": [],
+ "title": "(U) Dashboards",
+ "type": "Workspace"
+}
