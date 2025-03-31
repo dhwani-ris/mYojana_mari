@@ -4,12 +4,12 @@ var filters = [
 	{
 		"fieldname": "from_date",
 		"fieldtype": "Date",
-		"label": "From Date",
+		"label": __("From Date"),
 	},
 	{
 		"fieldname": "to_date",
 		"fieldtype": "Date",
-		"label": "To Date"
+		"label": __("To Date")
 	}
 	
 ];
@@ -18,12 +18,12 @@ if (frappe.user_roles.includes("Administrator")) {
 		"fieldname": "state",
 		"fieldtype": "Link",
 		"label": "State",
-		"options": "State"
+		"options": __("State")
 	},
 	{
 		"fieldname": "district",
 		"fieldtype": "Link",
-		"label": "District",
+		"label": __("District"),
 		"options": "District",
 		"get_query": function() {
 			var state = frappe.query_report.get_filter_value('state');

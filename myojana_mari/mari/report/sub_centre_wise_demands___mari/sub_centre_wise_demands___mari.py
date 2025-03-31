@@ -2,6 +2,7 @@
 # For license information, please see license.txt
 
 import frappe
+from frappe import _
 from myojana.utils.report_filter import ReportFilter
 
 
@@ -9,51 +10,51 @@ def execute(filters=None):
     columns = [
         {
             "fieldname": "user",
-            "label": "User",
+            "label": _("User"),
             "fieldtype": "Data",
             "width": 200,
 
         },
         {
             "fieldname": "sub_centre_name",
-            "label": "Sub Centre Name",
+            "label": _("Sub Centre Name"),
             "fieldtype": "Data",
             "width": 200,
 
         },
         {
             "fieldname": "total_demands",
-            "label": "Total Demands",
+            "label": _("Total Demands"),
             "fieldtype": "Data",
             "width": 130,
         },
         {
             "fieldname": "open_demands",
-            "label": "Open Demands",
+            "label": _("Open Demands"),
             "fieldtype": "Data",
             "width": 130,
         },
         {
             "fieldname": "submitted_demands",
-            "label": "Submitted Demands",
+            "label": _("Submitted Demands"),
             "fieldtype": "Data",
             "width": 160,
         },
         {
             "fieldname": "completed_demands",
-            "label": "Completed Demands",
+            "label": _("Completed Demands"),
             "fieldtype": "Data",
             "width": 170,
         },
         {
             "fieldname": "rejected_demands",
-            "label": "Rejected Demands",
+            "label": _("Rejected Demands"),
             "fieldtype": "Data",
             "width": 130,
         },
         {
             "fieldname": "closed_demands",
-            "label": "Closed Demands",
+            "label": _("Closed Demands"),
             "fieldtype": "Data",
             "width": 130,
         }

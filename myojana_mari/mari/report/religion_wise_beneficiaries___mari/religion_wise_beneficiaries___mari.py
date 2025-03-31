@@ -3,7 +3,7 @@
 
 import frappe
 from frappe import _
-from myojana.myojana.utils.report_filter import ReportFilter
+from myojana.utils.report_filter import ReportFilter
 
 def execute(filters=None):
     columns = [

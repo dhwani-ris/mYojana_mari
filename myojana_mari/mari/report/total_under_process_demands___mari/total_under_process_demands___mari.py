@@ -1,17 +1,18 @@
 import frappe
+from frappe import _
 from myojana.utils.report_filter import ReportFilter
 
 def execute(filters=None):
     columns = [
         {
             "fieldname": "status",
-            "label": "Current status",
+            "label": _("Current status"),
             "fieldtype": "Data",
             "width": 400,
         },
         {
             "fieldname": "count",
-            "label": "Count",
+            "label": _("Count"),
             "fieldtype": "Int",
             "width": 200
         }

@@ -4,12 +4,12 @@ var filters = [
 	{
 		"fieldname": "from_date",
 		"fieldtype": "Date",
-		"label": "From Date",
+		"label": __("From Date"),
 	},
 	{
 		"fieldname": "to_date",
 		"fieldtype": "Date",
-		"label": "To Date"
+		"label": __("To Date")
 	}
 
 ];
@@ -17,7 +17,7 @@ if (frappe.user_roles.includes("Administrator")) {
 	filters.push({
 		"fieldname": "state",
 		"fieldtype": "Link",
-		"label": "State",
+		"label": __("State"),
 		"options": "State"
 	},
 
