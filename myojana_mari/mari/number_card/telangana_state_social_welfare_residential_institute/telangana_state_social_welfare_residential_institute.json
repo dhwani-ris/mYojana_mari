@@ -1,0 +1,22 @@
+{
+ "creation": "2024-11-13 07:25:58.808135",
+ "docstatus": 0,
+ "doctype": "Number Card",
+ "document_type": "Children Profiling",
+ "dynamic_filters_json": "[]",
+ "filters_json": "[[\"Child Follow Up\",\"desired_schools\",\"=\",\"Telangana State Social Welfare Residential Education Institutions Society\",false],[\"Child Follow Up\",\"conversion_and_follow_up\",\"=\",\"Yes\",false]]",
+ "function": "Count",
+ "idx": 10,
+ "is_public": 0,
+ "is_standard": 1,
+ "label": "Telangana State Social Welfare Residential Institute",
+ "modified": "2025-03-31 13:42:54.896999",
+ "modified_by": "Administrator",
+ "module": "Mari",
+ "name": "Telangana State Social Welfare Residential Institute",
+ "owner": "Administrator",
+ "report_function": "Sum",
+ "show_percentage_stats": 1,
+ "stats_time_interval": "Daily",
+ "type": "Document Type"
+}

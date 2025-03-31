@@ -1,0 +1,22 @@
+{
+ "creation": "2024-11-13 07:25:58.242709",
+ "docstatus": 0,
+ "doctype": "Number Card",
+ "document_type": "Beneficiary Profiling",
+ "dynamic_filters_json": "[]",
+ "filters_json": "[[\"Beneficiary Profiling\",\"custom_are_you_availing_telangana_gas_cylinder_scheme\",\"=\",\"No\",false]]",
+ "function": "Count",
+ "idx": 0,
+ "is_public": 0,
+ "is_standard": 1,
+ "label": "Telangana 500 - No",
+ "modified": "2025-03-31 13:42:55.109093",
+ "modified_by": "Administrator",
+ "module": "Mari",
+ "name": "Telangana 500 - No",
+ "owner": "Administrator",
+ "report_function": "Sum",
+ "show_percentage_stats": 1,
+ "stats_time_interval": "Daily",
+ "type": "Document Type"
+}

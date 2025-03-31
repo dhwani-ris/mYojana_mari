@@ -1,0 +1,22 @@
+{
+ "creation": "2024-11-13 07:25:56.472868",
+ "docstatus": 0,
+ "doctype": "Number Card",
+ "document_type": "Beneficiary Profiling",
+ "dynamic_filters_json": "[]",
+ "filters_json": "[[\"Beneficiary Profiling\",\"custom_are_you_availing_pradhan_mantri_mathru_vandhana_yojana_\",\"=\",\"Under process\",false]]",
+ "function": "Count",
+ "idx": 0,
+ "is_public": 0,
+ "is_standard": 1,
+ "label": "Pradhan Mantri Mathru Vandhana Yojana - Under process",
+ "modified": "2025-03-31 13:42:55.590933",
+ "modified_by": "Administrator",
+ "module": "Mari",
+ "name": "Pradhan Mantri Mathru Vandhana Yojana - Under process",
+ "owner": "Administrator",
+ "report_function": "Sum",
+ "show_percentage_stats": 1,
+ "stats_time_interval": "Daily",
+ "type": "Document Type"
+}

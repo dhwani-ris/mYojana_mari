@@ -1,0 +1,22 @@
+{
+ "creation": "2024-11-13 07:25:54.559575",
+ "docstatus": 0,
+ "doctype": "Number Card",
+ "document_type": "Beneficiary Profiling",
+ "dynamic_filters_json": "[]",
+ "filters_json": "[[\"Beneficiary Profiling\",\"custom_are_you_availing_the_ghmc_free_drinking_water_scheme\",\"=\",\"Yes\",false]]",
+ "function": "Count",
+ "idx": 0,
+ "is_public": 0,
+ "is_standard": 1,
+ "label": "GHMC free drinking water scheme - Yes",
+ "modified": "2025-03-31 13:42:56.127860",
+ "modified_by": "Administrator",
+ "module": "Mari",
+ "name": "GHMC free drinking water scheme - Yes",
+ "owner": "Administrator",
+ "report_function": "Sum",
+ "show_percentage_stats": 1,
+ "stats_time_interval": "Daily",
+ "type": "Document Type"
+}

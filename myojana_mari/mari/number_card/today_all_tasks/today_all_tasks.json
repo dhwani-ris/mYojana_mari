@@ -1,0 +1,22 @@
+{
+ "creation": "2024-11-13 07:25:58.977794",
+ "docstatus": 0,
+ "doctype": "Number Card",
+ "document_type": "ToDo",
+ "dynamic_filters_json": "[]",
+ "filters_json": "[[\"ToDo\",\"status\",\"=\",\"Open\",false],[\"ToDo\",\"date\",\"Timespan\",\"today\",false]]",
+ "function": "Count",
+ "idx": 1,
+ "is_public": 0,
+ "is_standard": 1,
+ "label": "Today All Tasks",
+ "modified": "2025-03-31 13:42:54.614124",
+ "modified_by": "Administrator",
+ "module": "Mari",
+ "name": "Today All Tasks",
+ "owner": "Administrator",
+ "report_function": "Sum",
+ "show_percentage_stats": 1,
+ "stats_time_interval": "Daily",
+ "type": "Document Type"
+}
