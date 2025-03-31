@@ -17,7 +17,6 @@ def execute(filters=None):
             "width": 200
         }
     ]
-
     condition_str = ReportFilter.set_report_filters(filters, 'date_of_visit', True, 'ben_table')
     if condition_str:
         condition_str = f"AND {condition_str}"
