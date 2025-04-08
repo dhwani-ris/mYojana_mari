@@ -4,12 +4,12 @@
 var filters = [
 	{
 		"fieldname": "from_date",
-		"fieldtype": __("Date"),
+		"fieldtype": "Date",
 		"label": "From Date",
 	},
 	{
 		"fieldname": "to_date",
-		"fieldtype": __("Date"),
+		"fieldtype": "Date",
 		"label": "To Date"
 	},
 	{
@@ -47,9 +47,8 @@ var filters = [
 		},
 	}
 
-
 ];
 
-frappe.query_reports["Place of origin - mari"] = {
+frappe.query_reports["Education composition - mari"] = {
 	filters: filters
 };

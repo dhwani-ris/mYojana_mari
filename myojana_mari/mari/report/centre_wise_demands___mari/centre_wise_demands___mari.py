@@ -9,15 +9,8 @@ from myojana.utils.report_filter import ReportFilter
 def execute(filters=None):
     columns = [
         {
-            "fieldname": "user",
-            "label": _("User"),
-            "fieldtype": "Data",
-            "width": 200,
-
-        },
-        {
-            "fieldname": "sub_centre_name",
-            "label": _("Sub Centre Name"),
+            "fieldname": "centre_name",
+            "label": _("Centre Name"),
             "fieldtype": "Data",
             "width": 200,
 
@@ -58,38 +51,32 @@ def execute(filters=None):
             "fieldtype": "Data",
             "width": 130,
         }
-    ]             
-    
+    ]
 
     condition_str = ReportFilter.set_report_filters(filters, 'follow_up_date', True , '_fuc')
-    condition_str = f"{condition_str}" if condition_str else "1=1"
+    condition_str = f"WHERE {condition_str}" if condition_str else ""
 
     sql_query = f"""
-    SELECT
-        _sc.modified_by AS user,
-        COALESCE(hd.sub_centre_name, 'Unknown') AS sub_centre_name,
-        SUM(CASE WHEN _sc.status = 'Open' THEN 1 ELSE 0 END) AS open_demands,
-        SUM(CASE WHEN _sc.status = 'Completed' THEN 1 ELSE 0 END) AS completed_demands,
-        SUM(CASE WHEN _sc.status = 'Closed' THEN 1 ELSE 0 END) AS closed_demands,
-        SUM(CASE WHEN _sc.status = 'Under process' THEN 1 ELSE 0 END) AS submitted_demands,
-        SUM(CASE WHEN _sc.status = 'Rejected' THEN 1 ELSE 0 END) AS rejected_demands,
-        COUNT(_sc.status) AS total_demands
-    FROM
-        `tabScheme Child` as _sc
-	LEFT JOIN `tabFollow Up Child` as _fuc
-		ON (_fuc.name_of_the_scheme = _sc.name_of_the_scheme AND _fuc.parenttype = 'Beneficiary Profiling')
-	INNER JOIN `tabBeneficiary Profiling` as ben_table 
-		ON (ben_table.name = _sc.parent)
-    LEFT JOIN
-        "tabSub Centre" hd ON ben_table.sub_centre = hd.name 
-    WHERE
-        {condition_str}
-    GROUP BY
-        _sc.modified_by, COALESCE(hd.sub_centre_name, 'Unknown');
-
-
-    """
-
+SELECT
+    tw.centre_name,
+    SUM(CASE WHEN (_sc.status = 'Open') THEN 1 ELSE 0 END) as open_demands,
+    SUM(CASE WHEN (_sc.status = 'Completed') THEN 1 ELSE 0 END) as completed_demands,
+    SUM(CASE WHEN (_sc.status = 'Closed') THEN 1 ELSE 0 END) as closed_demands,
+    SUM(CASE WHEN (_sc.status = 'Under process') THEN 1 ELSE 0 END) as submitted_demands,
+    SUM(CASE WHEN (_sc.status = 'Rejected') THEN 1 ELSE 0 END) as rejected_demands,
+    COUNT(_sc.status) as total_demands
+FROM
+    `tabScheme Child` as _sc
+LEFT JOIN `tabFollow Up Child` as _fuc
+	ON (_fuc.name_of_the_scheme = _sc.name_of_the_scheme AND _fuc.parenttype = 'Beneficiary Profiling')
+INNER JOIN `tabBeneficiary Profiling` as ben_table 
+	ON (ben_table.name = _sc.parent)
+LEFT JOIN
+    `tabCentre` tw ON ben_table.centre = tw.name
+{condition_str}
+GROUP BY
+   tw.centre_name;
+"""
 
 
     data = frappe.db.sql(sql_query, as_dict=True)

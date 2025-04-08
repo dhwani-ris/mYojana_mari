@@ -1,22 +1,21 @@
-// Copyright (c) 2023, suvaidyam and contributors
+// Copyright (c) 2024, suvaidyam and contributors
 // For license information, please see license.txt
-
 var filters = [
 	{
 		"fieldname": "from_date",
-		"fieldtype": __("Date"),
-		"label": "From Date",
+		"fieldtype": "Date",
+		"label": __("From Date"),
 	},
 	{
 		"fieldname": "to_date",
-		"fieldtype": __("Date"),
-		"label": "To Date"
+		"fieldtype": "Date",
+		"label": __("To Date")
 	},
 	{
 		"fieldname": "state",
 		"fieldtype": "Link",
 		"label": __("State of Origin"),
-		"options": "State",
+		"options": "State"
 	},
 	{
 		"fieldname": "district",
@@ -44,12 +43,11 @@ var filters = [
 					'district': district
 				}
 			};
-		},
+		}
 	}
-
-
+	
 ];
 
-frappe.query_reports["Place of origin - mari"] = {
-	filters: filters
+frappe.query_reports["District-wise demands - mari"] = {
+	filters: filters,
 };

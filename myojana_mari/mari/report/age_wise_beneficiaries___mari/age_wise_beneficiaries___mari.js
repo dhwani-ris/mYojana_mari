@@ -1,16 +1,15 @@
 // Copyright (c) 2023, suvaidyam and contributors
 // For license information, please see license.txt
-
 var filters = [
 	{
 		"fieldname": "from_date",
-		"fieldtype": __("Date"),
-		"label": "From Date",
+		"fieldtype": "Date",
+		"label": __("From Date"),
 	},
 	{
 		"fieldname": "to_date",
-		"fieldtype": __("Date"),
-		"label": "To Date"
+		"fieldtype": "Date",
+		"label": __("To Date")
 	},
 	{
 		"fieldname": "state",
@@ -46,10 +45,10 @@ var filters = [
 			};
 		},
 	}
-
-
 ];
-
-frappe.query_reports["Place of origin - mari"] = {
+frappe.query_reports["Age-wise beneficiaries - mari"] = {
 	filters: filters
 };
+
+
+

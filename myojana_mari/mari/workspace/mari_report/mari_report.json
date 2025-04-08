@@ -1,0 +1,152 @@
+{
+ "app": "myojana_mari",
+ "charts": [],
+ "content": "[{\"id\":\"6JGJ_myABu\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Place of origin\",\"col\":7}},{\"id\":\"HYiP8kVA_5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"State of origin\",\"col\":7}},{\"id\":\"5NrACL3C6o\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Education composition\",\"col\":7}},{\"id\":\"o9j9abVkDa\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Age-wise beneficiaries\",\"col\":7}},{\"id\":\"oYJjvyGlRS\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Religion-wise beneficiaries\",\"col\":7}},{\"id\":\"vzXhbm-XYj\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Occupational category-wise beneficiaries\",\"col\":7}},{\"id\":\"HTWhnwhQjB\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"House Type Wise Beneficiaries\",\"col\":7}},{\"id\":\"H_TTeAkTIz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Milestone-wise demands\",\"col\":7}},{\"id\":\"lG0n8lZABf\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"State-wise demands\",\"col\":7}},{\"id\":\"RRctRHjIFG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"District-wise demands\",\"col\":7}},{\"id\":\"hXrCi7U6BM\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sub centre wise demands\",\"col\":7}},{\"id\":\"io4mpgo8QG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Centre wise demands\",\"col\":7}},{\"id\":\"nbP_iLzg6K\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Scheme-wise demands\",\"col\":7}},{\"id\":\"XmwBmBhd2t\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Beneficiaries Who Have Received Benefits Of 2 Or More Schemes\",\"col\":8}},{\"id\":\"INOGumCgE3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Families who have received benefits of 2 or more schemes\",\"col\":8}},{\"id\":\"R3REhw0iqN\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Beneficiaries Who Have Received Benefits Of At Least 1 Scheme In Each Category\",\"col\":8}},{\"id\":\"qVTfKNWFk9\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Families Who Have Received Benefits Of At Least 1 Scheme In Each Category\",\"col\":8}}]",
+ "creation": "2025-04-08 14:35:24.349368",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "table",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Mari Report",
+ "link_type": "DocType",
+ "links": [],
+ "modified": "2025-04-08 14:50:11.326604",
+ "modified_by": "Administrator",
+ "module": "Mari",
+ "name": "Mari Report",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 23.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Centre wise demands",
+   "link_to": "Centre wise demands - mari",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Religion-wise beneficiaries",
+   "link_to": "Religion-wise beneficiaries - mari",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Beneficiaries Who Have Received Benefits Of At Least 1 Scheme In Each Category",
+   "link_to": "Beneficiaries who have received benefits of at least 1 scheme in each category",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Place of origin",
+   "link_to": "Place of origin - mari",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "State-wise demands",
+   "link_to": "State-wise demands - mari",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Beneficiaries Who Have Received Benefits Of 2 Or More Schemes",
+   "link_to": "Beneficiaries who have received benefits of 2 or more schemes",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "State of origin",
+   "link_to": "State of origin - mari",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Families Who Have Received Benefits Of At Least 1 Scheme In Each Category",
+   "link_to": "Families who have received benefits of at least 1 scheme in each category",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "District-wise demands",
+   "link_to": "District-wise demands - mari",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Scheme-wise demands",
+   "link_to": "Scheme-wise demands - mari",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Occupational category-wise beneficiaries",
+   "link_to": "Occupational category-wise beneficiaries - mari",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Families who have received benefits of 2 or more schemes",
+   "link_to": "Families who have received benefits of 2 or more schemes - mari",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Sub centre wise demands",
+   "link_to": "Sub centre wise demands - mari",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "House Type Wise Beneficiaries",
+   "link_to": "House type-wise beneficiaries",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Education composition",
+   "link_to": "Education composition - mari",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Milestone-wise demands",
+   "link_to": "Milestone-wise demands - mari",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Age-wise beneficiaries",
+   "link_to": "Age-wise beneficiaries - mari",
+   "type": "Report"
+  }
+ ],
+ "title": "Mari Report",
+ "type": "Workspace"
+}
