@@ -54,9 +54,18 @@ def execute(filters=None):
     ]                 
     
 
-    condition_str = ReportFilter.set_report_filters(filters, 'follow_up_date', True , '_fuc')
-    condition_str = f"WHERE {condition_str}" if condition_str else ""
-
+    # condition_str = ReportFilter.set_report_filters(filters, 'follow_up_date', True , '_fuc')
+    # condition_str = f"WHERE {condition_str}" if condition_str else ""
+    condition_str = ""
+    if filters.get("from_date") and filters.get("to_date"):
+        condition_str += f" AND _fuc.follow_up_date BETWEEN '{filters.get('from_date')}' AND '{filters.get('to_date')}'"
+    elif filters.get("from_date"):
+        condition_str += f" AND _fuc.follow_up_date >= '{filters.get('from_date')}'"
+    elif filters.get("to_date"):
+        condition_str += f" AND _fuc.follow_up_date <= '{filters.get('to_date')}'"
+    if filters.get('state'):
+        condition_str += f" AND ben_table.state = '{filters.get('state')}'"
+    
     sql_query = f"""
     SELECT
         COALESCE(s.state_name, 'Unknown') AS state_name,
@@ -74,7 +83,8 @@ def execute(filters=None):
 		ON (ben_table.name = _sc.parent)
     LEFT JOIN
         `tabState` s ON ben_table.state = s.name
-    {condition_str}
+    WHERE 1=1
+        {condition_str}
     GROUP BY
         COALESCE(s.state_name, 'Unknown');
     """

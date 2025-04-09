@@ -53,30 +53,43 @@ def execute(filters=None):
         }
     ]
 
-    condition_str = ReportFilter.set_report_filters(filters, 'follow_up_date', True , '_fuc')
-    condition_str = f"WHERE {condition_str}" if condition_str else ""
-
+    # condition_str = ReportFilter.set_report_filters(filters, 'follow_up_date', True , '_fuc')
+    # condition_str = f"WHERE {condition_str}" if condition_str else ""
+    condition_str = ""
+    if filters.get("from_date") and filters.get("to_date"):
+        condition_str += f" AND _fuc.follow_up_date BETWEEN '{filters.get('from_date')}' AND '{filters.get('to_date')}'"
+    elif filters.get("from_date"):
+        condition_str += f" AND _fuc.follow_up_date >= '{filters.get('from_date')}'"
+    elif filters.get("to_date"):
+        condition_str += f" AND _fuc.follow_up_date <= '{filters.get('to_date')}'"
+    if filters.get('state'):
+        condition_str += f" AND ben_table.state = '{filters.get('state')}'"
+    if filters.get('district'):
+        condition_str += f" AND ben_table.district = '{filters.get('district')}'"
+    if filters.get('block'):
+        condition_str += f" AND ben_table.block = '{filters.get('block')}'"
     sql_query = f"""
-SELECT
-    tw.centre_name,
-    SUM(CASE WHEN (_sc.status = 'Open') THEN 1 ELSE 0 END) as open_demands,
-    SUM(CASE WHEN (_sc.status = 'Completed') THEN 1 ELSE 0 END) as completed_demands,
-    SUM(CASE WHEN (_sc.status = 'Closed') THEN 1 ELSE 0 END) as closed_demands,
-    SUM(CASE WHEN (_sc.status = 'Under process') THEN 1 ELSE 0 END) as submitted_demands,
-    SUM(CASE WHEN (_sc.status = 'Rejected') THEN 1 ELSE 0 END) as rejected_demands,
-    COUNT(_sc.status) as total_demands
-FROM
-    `tabScheme Child` as _sc
-LEFT JOIN `tabFollow Up Child` as _fuc
-	ON (_fuc.name_of_the_scheme = _sc.name_of_the_scheme AND _fuc.parenttype = 'Beneficiary Profiling')
-INNER JOIN `tabBeneficiary Profiling` as ben_table 
-	ON (ben_table.name = _sc.parent)
-LEFT JOIN
-    `tabCentre` tw ON ben_table.centre = tw.name
-{condition_str}
-GROUP BY
-   tw.centre_name;
-"""
+        SELECT
+            tw.centre_name,
+            SUM(CASE WHEN (_sc.status = 'Open') THEN 1 ELSE 0 END) as open_demands,
+            SUM(CASE WHEN (_sc.status = 'Completed') THEN 1 ELSE 0 END) as completed_demands,
+            SUM(CASE WHEN (_sc.status = 'Closed') THEN 1 ELSE 0 END) as closed_demands,
+            SUM(CASE WHEN (_sc.status = 'Under process') THEN 1 ELSE 0 END) as submitted_demands,
+            SUM(CASE WHEN (_sc.status = 'Rejected') THEN 1 ELSE 0 END) as rejected_demands,
+            COUNT(_sc.status) as total_demands
+        FROM
+            `tabScheme Child` as _sc
+        LEFT JOIN `tabFollow Up Child` as _fuc
+            ON (_fuc.name_of_the_scheme = _sc.name_of_the_scheme AND _fuc.parenttype = 'Beneficiary Profiling')
+        INNER JOIN `tabBeneficiary Profiling` as ben_table 
+            ON (ben_table.name = _sc.parent)
+        LEFT JOIN
+            `tabCentre` tw ON ben_table.centre = tw.name
+        WHERE 1=1
+            {condition_str}
+        GROUP BY
+        tw.centre_name;
+        """
 
 
     data = frappe.db.sql(sql_query, as_dict=True)

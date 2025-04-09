@@ -14,13 +14,13 @@ var filters = [
 	{
 		"fieldname": "state",
 		"fieldtype": "Link",
-		"label": __("State of Origin"),
+		"label": __("State"),
 		"options": "State"
 	},
 	{
 		"fieldname": "district",
 		"fieldtype": "Link",
-		"label": __("District of Origin"),
+		"label": __("District"),
 		"options": "District",
 		"get_query": function() {
 			var state = frappe.query_report.get_filter_value('state');

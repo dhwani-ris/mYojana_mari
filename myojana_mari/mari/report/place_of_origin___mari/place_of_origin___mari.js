@@ -13,18 +13,18 @@ var filters = [
 		"label": "To Date"
 	},
 	{
-		"fieldname": "state",
+		"fieldname": "state_of_origin",
 		"fieldtype": "Link",
 		"label": __("State of Origin"),
 		"options": "State",
 	},
 	{
-		"fieldname": "district",
+		"fieldname": "district_of_origin",
 		"fieldtype": "Link",
 		"label": __("District of Origin"),
 		"options": "District",
 		"get_query": function() {
-			var state = frappe.query_report.get_filter_value('state');
+			var state = frappe.query_report.get_filter_value('state_of_origin');
 			return {
 				filters: {
 					'state': state
@@ -38,7 +38,7 @@ var filters = [
 		"label": __("Cluster"),
 		"options": "Block",
 		"get_query": function() {
-			var district = frappe.query_report.get_filter_value('district');
+			var district = frappe.query_report.get_filter_value('district_of_origin');
 			return {
 				filters: {
 					'district': district

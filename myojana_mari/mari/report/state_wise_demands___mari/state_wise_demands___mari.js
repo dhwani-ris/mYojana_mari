@@ -14,7 +14,7 @@ var filters = [
 	{
 		"fieldname": "state",
 		"fieldtype": "Link",
-		"label": __("State of Origin"),
+		"label": __("State"),
 		"options": "State",
 	},
 	// {

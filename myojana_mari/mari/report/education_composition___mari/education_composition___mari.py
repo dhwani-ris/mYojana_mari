@@ -29,7 +29,7 @@ def execute(filters=None):
 		
 	sql_query = f"""
 		SELECT
-    COALESCE(NULLIF(t1.education, ''), 'Unknown') AS education,
+    COALESCE(NULLIF(t1.custom_educational_qualification, ''), 'Unknown') AS education,
 		COUNT(t1.name) AS count
 	FROM
 		`tabBeneficiary Profiling` AS t1
@@ -38,7 +38,7 @@ def execute(filters=None):
 	WHERE
 		1=1 {condition_str}
 	GROUP BY
-    COALESCE(NULLIF(t1.education, ''), 'Unknown');
+    COALESCE(NULLIF(t1.custom_educational_qualification, ''), 'Unknown');
 
 	"""
 

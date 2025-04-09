@@ -61,8 +61,17 @@ def execute(filters=None):
     ]             
     
 
-    condition_str = ReportFilter.set_report_filters(filters, 'follow_up_date', True , '_fuc')
-    condition_str = f"{condition_str}" if condition_str else "1=1"
+    # condition_str = ReportFilter.set_report_filters(filters, 'follow_up_date', True , '_fuc')
+    # condition_str = f"{condition_str}" if condition_str else "1=1"
+    condition_str = ""
+    if filters.get("from_date") and filters.get("to_date"):
+        condition_str += f" AND _fuc.follow_up_date BETWEEN '{filters.get('from_date')}' AND '{filters.get('to_date')}'"
+    elif filters.get("from_date"):
+        condition_str += f" AND _fuc.follow_up_date >= '{filters.get('from_date')}'"
+    elif filters.get("to_date"):
+        condition_str += f" AND _fuc.follow_up_date <= '{filters.get('to_date')}'"
+    if filters.get('state'):
+        condition_str += f" AND ben_table.state = '{filters.get('state')}'"
 
     sql_query = f"""
     SELECT
@@ -82,7 +91,7 @@ def execute(filters=None):
 		ON (ben_table.name = _sc.parent)
     LEFT JOIN
         "tabSub Centre" hd ON ben_table.sub_centre = hd.name 
-    WHERE
+    WHERE 1=1
         {condition_str}
     GROUP BY
         _sc.modified_by, COALESCE(hd.sub_centre_name, 'Unknown');
