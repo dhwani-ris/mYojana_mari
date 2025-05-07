@@ -73,25 +73,39 @@ def execute(filters=None):
         condition_str += f" AND ben_table.block = '{filters.get('block')}'"
         
     sql_query = f"""
-    SELECT
-        milestone_category,
-        SUM(CASE WHEN (_sc.status = 'Open') THEN 1 ELSE 0 END) as open_demands,
-        SUM(CASE WHEN (_sc.status = 'Completed') THEN 1 ELSE 0 END) as completed_demands,
-        SUM(CASE WHEN (_sc.status = 'Closed') THEN 1 ELSE 0 END) as closed_demands,
-        SUM(CASE WHEN (_sc.status = 'Under process') THEN 1 ELSE 0 END) as submitted_demands,
-        SUM(CASE WHEN (_sc.status = 'Rejected') THEN 1 ELSE 0 END) as rejected_demands,
-        COUNT(_sc.status) as total_demands
-    FROM
-		`tabScheme Child` as _sc
-	LEFT JOIN `tabFollow Up Child` as _fuc
-		ON (_fuc.name_of_the_scheme = _sc.name_of_the_scheme AND _fuc.parenttype = 'Beneficiary Profiling')
-	INNER JOIN `tabBeneficiary Profiling` as ben_table 
-		ON (ben_table.name = _sc.parent)
-    WHERE
-        1=1 {condition_str}
-    GROUP BY
-        milestone_category;
-"""
+        select 
+            ranked_followups.milestone AS milestone_category,
+            SUM(CASE WHEN (ranked_followups.follow_up_status = 'Interested') THEN 1 ELSE 0 END) as open_demands,
+            SUM(CASE WHEN (ranked_followups.follow_up_status = 'Completed') THEN 1 ELSE 0 END) as completed_demands,
+            SUM(CASE WHEN (ranked_followups.follow_up_status = 'Closed') THEN 1 ELSE 0 END) as closed_demands,
+            SUM(CASE WHEN (ranked_followups.follow_up_status = 'Under process') THEN 1 ELSE 0 END) as submitted_demands,
+            SUM(CASE WHEN (ranked_followups.follow_up_status = 'Rejected') THEN 1 ELSE 0 END) as rejected_demands,
+            (
+                SUM(CASE WHEN (ranked_followups.follow_up_status = 'Interested') THEN 1 ELSE 0 END) +
+                SUM(CASE WHEN (ranked_followups.follow_up_status = 'Completed') THEN 1 ELSE 0 END) +
+                SUM(CASE WHEN (ranked_followups.follow_up_status = 'Closed') THEN 1 ELSE 0 END) +
+                SUM(CASE WHEN (ranked_followups.follow_up_status = 'Under process') THEN 1 ELSE 0 END) +
+                SUM(CASE WHEN (ranked_followups.follow_up_status = 'Rejected') THEN 1 ELSE 0 END)
+            ) as total_demands
+            
+        from (
+            select  
+                _fuc.name_of_the_scheme,
+                _sc.milestone,
+                _fuc.follow_up_status,
+                ROW_NUMBER() OVER (PARTITION BY _fuc.parent,_fuc.name_of_the_scheme ORDER BY _fuc.modified DESC) as rn
+            from
+                `tabFollow Up Child` as _fuc
+            INNER JOIN `tabBeneficiary Profiling` as ben_table 
+                    ON (ben_table.name = _fuc.parent)
+            INNER JOIN `tabScheme` AS _sc ON (_sc.name = _fuc.name_of_the_scheme)
+            where
+                1 = 1 {condition_str}
+        ) as ranked_followups
+        where ranked_followups.rn = 1 
+        group by 
+            ranked_followups.milestone    
+    """
 
 
     data = frappe.db.sql(sql_query, as_dict=True)

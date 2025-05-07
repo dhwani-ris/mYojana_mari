@@ -74,29 +74,35 @@ def execute(filters=None):
         condition_str += f" AND ben_table.state = '{filters.get('state')}'"
 
     sql_query = f"""
-    SELECT
-        _sc.modified_by AS user,
-        COALESCE(hd.sub_centre_name, 'Unknown') AS sub_centre_name,
-        SUM(CASE WHEN _sc.status = 'Open' THEN 1 ELSE 0 END) AS open_demands,
-        SUM(CASE WHEN _sc.status = 'Completed' THEN 1 ELSE 0 END) AS completed_demands,
-        SUM(CASE WHEN _sc.status = 'Closed' THEN 1 ELSE 0 END) AS closed_demands,
-        SUM(CASE WHEN _sc.status = 'Under process' THEN 1 ELSE 0 END) AS submitted_demands,
-        SUM(CASE WHEN _sc.status = 'Rejected' THEN 1 ELSE 0 END) AS rejected_demands,
-        COUNT(_sc.status) AS total_demands
-    FROM
-        `tabScheme Child` as _sc
-	LEFT JOIN `tabFollow Up Child` as _fuc
-		ON (_fuc.name_of_the_scheme = _sc.name_of_the_scheme AND _fuc.parenttype = 'Beneficiary Profiling')
-	INNER JOIN `tabBeneficiary Profiling` as ben_table 
-		ON (ben_table.name = _sc.parent)
-    LEFT JOIN
-        "tabSub Centre" hd ON ben_table.sub_centre = hd.name 
-    WHERE 1=1
-        {condition_str}
-    GROUP BY
-        _sc.modified_by, COALESCE(hd.sub_centre_name, 'Unknown');
-
-
+        select 
+            ranked_followups.modified_by AS user,
+            COALESCE(ranked_followups.sub_centre_name, 'Unknown') AS sub_centre_name,
+            SUM(CASE WHEN (ranked_followups.follow_up_status = 'Interested') THEN 1 ELSE 0 END) as open_demands,
+            SUM(CASE WHEN (ranked_followups.follow_up_status = 'Completed') THEN 1 ELSE 0 END) as completed_demands, 
+            SUM(CASE WHEN (ranked_followups.follow_up_status = 'Closed') THEN 1 ELSE 0 END) as closed_demands, 
+            SUM(CASE WHEN (ranked_followups.follow_up_status = 'Under process') THEN 1 ELSE 0 END) as submitted_demands, 
+            SUM(CASE WHEN (ranked_followups.follow_up_status = 'Rejected') THEN 1 ELSE 0 END) as rejected_demands, 
+            ( SUM(CASE WHEN (ranked_followups.follow_up_status = 'Interested') THEN 1 ELSE 0 END) + SUM(CASE WHEN (ranked_followups.follow_up_status = 'Completed') THEN 1 ELSE 0 END) + SUM(CASE WHEN (ranked_followups.follow_up_status = 'Closed') THEN 1 ELSE 0 END) + SUM(CASE WHEN (ranked_followups.follow_up_status = 'Under process') THEN 1 ELSE 0 END) + SUM(CASE WHEN (ranked_followups.follow_up_status = 'Rejected') THEN 1 ELSE 0 END) ) as total_demands 
+        from 
+            ( 
+                select 
+                    _fuc.name_of_the_scheme,
+                    _fuc.follow_up_status, 
+                    _fuc.modified_by, 
+                    hd.sub_centre_name,
+                    ROW_NUMBER() OVER (PARTITION BY  _fuc.parent,_fuc.name_of_the_scheme ORDER BY _fuc.modified DESC) as rn 
+                from `tabFollow Up Child` as _fuc 
+                INNER JOIN `tabBeneficiary Profiling` as ben_table 
+                    ON (ben_table.name = _fuc.parent)
+                LEFT JOIN
+                    "tabSub Centre" hd ON ben_table.sub_centre = hd.name
+                WHERE 1=1
+                    {condition_str}
+            ) as ranked_followups 
+        where ranked_followups.rn = 1 
+        group by 
+            COALESCE(ranked_followups.sub_centre_name, 'Unknown'),
+            ranked_followups.modified_by
     """
 
 
