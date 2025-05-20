@@ -93,7 +93,7 @@ def execute(filters=None):
                 _fuc.name_of_the_scheme,
                 _sc.milestone,
                 _fuc.follow_up_status,
-                ROW_NUMBER() OVER (PARTITION BY _fuc.parent,_fuc.name_of_the_scheme ORDER BY _fuc.modified DESC) as rn
+                ROW_NUMBER() OVER (PARTITION BY _fuc.parent,_fuc.name_of_the_scheme ORDER BY _fuc.last_update_date DESC) as rn
             from
                 `tabFollow Up Child` as _fuc
             INNER JOIN `tabBeneficiary Profiling` as ben_table 

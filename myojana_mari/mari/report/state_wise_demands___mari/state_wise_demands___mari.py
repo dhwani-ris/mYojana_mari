@@ -80,9 +80,9 @@ def execute(filters=None):
                 select 
                     _fuc.name_of_the_scheme,
                     _fuc.follow_up_status, 
-                    _fuc.modified_by, 
+                    _fuc.last_update_by, 
                     s.state_name,
-                    ROW_NUMBER() OVER (PARTITION BY  _fuc.parent,_fuc.name_of_the_scheme ORDER BY _fuc.modified DESC) as rn 
+                    ROW_NUMBER() OVER (PARTITION BY  _fuc.parent,_fuc.name_of_the_scheme ORDER BY _fuc.last_update_date DESC) as rn 
                 from `tabFollow Up Child` as _fuc 
                 INNER JOIN `tabBeneficiary Profiling` as ben_table 
                     ON (ben_table.name = _fuc.parent)
