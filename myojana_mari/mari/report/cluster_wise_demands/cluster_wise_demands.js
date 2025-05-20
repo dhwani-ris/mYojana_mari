@@ -1,4 +1,4 @@
-// Copyright (c) 2024, suvaidyam and contributors
+// Copyright (c) 2025, Rahul Sah and contributors
 // For license information, please see license.txt
 var filters = [
 	{
@@ -45,17 +45,6 @@ var filters = [
 	},
 
 ];
-// if (frappe.user_roles.includes("Administrator")) {
-// 	filters.push({
-// 		"fieldname": "state",
-// 		"fieldtype": "Link",
-// 		"label": "State",
-// 		"options": "State"
-// 	},
-
-
-// 	)
-// }
-frappe.query_reports["Centre wise demands - mari"] = {
+frappe.query_reports["Cluster Wise Demands"] = {
 	filters: filters,
 };

@@ -16,13 +16,6 @@ def execute(filters=None):
 
         },
         {
-            "fieldname": "sub_centre_name",
-            "label": _("Sub Centre Name"),
-            "fieldtype": "Data",
-            "width": 200,
-
-        },
-        {
             "fieldname": "total_demands",
             "label": _("Total Demands"),
             "fieldtype": "Data",
@@ -50,13 +43,13 @@ def execute(filters=None):
             "fieldname": "rejected_demands",
             "label": _("Rejected Demands"),
             "fieldtype": "Data",
-            "width": 130,
+            "width": 170,
         },
         {
             "fieldname": "closed_demands",
             "label": _("Closed Demands"),
             "fieldtype": "Data",
-            "width": 130,
+            "width": 170,
         }
     ]             
     
@@ -75,8 +68,7 @@ def execute(filters=None):
 
     sql_query = f"""
         select 
-            ranked_followups.modified_by AS user,
-            COALESCE(ranked_followups.sub_centre_name, 'Unknown') AS sub_centre_name,
+            ranked_followups.last_update_by AS user,
             SUM(CASE WHEN (ranked_followups.follow_up_status = 'Interested') THEN 1 ELSE 0 END) as open_demands,
             SUM(CASE WHEN (ranked_followups.follow_up_status = 'Completed') THEN 1 ELSE 0 END) as completed_demands, 
             SUM(CASE WHEN (ranked_followups.follow_up_status = 'Not interested' OR ranked_followups.follow_up_status = 'Not reachable') THEN 1 ELSE 0 END) as closed_demands, 
@@ -88,21 +80,18 @@ def execute(filters=None):
                 select 
                     _fuc.name_of_the_scheme,
                     _fuc.follow_up_status, 
-                    _fuc.modified_by, 
-                    hd.sub_centre_name,
-                    ROW_NUMBER() OVER (PARTITION BY  _fuc.parent,_fuc.name_of_the_scheme ORDER BY _fuc.modified DESC) as rn 
+                    _fuc.last_update_by, 
+                    ROW_NUMBER() OVER (PARTITION BY  _fuc.parent,_fuc.name_of_the_scheme ORDER BY _fuc.last_update_date DESC) as rn 
                 from `tabFollow Up Child` as _fuc 
                 INNER JOIN `tabBeneficiary Profiling` as ben_table 
                     ON (ben_table.name = _fuc.parent)
-                LEFT JOIN
-                    "tabSub Centre" hd ON ben_table.sub_centre = hd.name
-                WHERE 1=1
+                WHERE
+                    _fuc.last_update_by IN (SELECT parent FROM `tabHas Role` WHERE parenttype =  'User' AND role = 'Sub-Centre')
                     {condition_str}
             ) as ranked_followups 
         where ranked_followups.rn = 1 
         group by 
-            COALESCE(ranked_followups.sub_centre_name, 'Unknown'),
-            ranked_followups.modified_by
+            ranked_followups.last_update_by
     """
 
 

@@ -8,13 +8,13 @@ from myojana.utils.report_filter import ReportFilter
 
 def execute(filters=None):
     columns = [
-        {
-            "fieldname": "user",
-            "label": _("User Name"),
-            "fieldtype": "Data",
-            "width": 150,
+        # {
+        #     "fieldname": "user",
+        #     "label": _("User Name"),
+        #     "fieldtype": "Data",
+        #     "width": 150,
 
-        },
+        # },
         {
             "fieldname": "milestone",
             "label": _("Milestone category"),
