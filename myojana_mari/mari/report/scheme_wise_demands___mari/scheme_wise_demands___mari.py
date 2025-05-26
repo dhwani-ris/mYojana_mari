@@ -76,35 +76,49 @@ def execute(filters=None):
     if 'Sub-Centre' in frappe.get_roles(user) and 'Administrator' not in frappe.get_roles(user):
         condition_str += f" AND _fuc.last_update_by = '{user}'"
     sql_query = f"""
-        select 
-            ranked_followups.name_of_the_scheme AS scheme,
-            ranked_followups.milestone AS milestone,
-            ranked_followups.last_update_by AS user,
-            SUM(CASE WHEN (ranked_followups.follow_up_status = 'Interested') THEN 1 ELSE 0 END) as open_demands,
-            SUM(CASE WHEN (ranked_followups.follow_up_status = 'Completed') THEN 1 ELSE 0 END) as completed_demands, 
-            SUM(CASE WHEN (ranked_followups.follow_up_status = 'Not interested') THEN 1 ELSE 0 END) as closed_demands, 
-            SUM(CASE WHEN (ranked_followups.follow_up_status = 'Under process' OR ranked_followups.follow_up_status = 'Document submitted' OR ranked_followups.follow_up_status = 'Additional info required') THEN 1 ELSE 0 END) as submitted_demands, 
-            SUM(CASE WHEN (ranked_followups.follow_up_status = 'Rejected') THEN 1 ELSE 0 END) as rejected_demands, 
-            ( SUM(CASE WHEN (ranked_followups.follow_up_status = 'Interested') THEN 1 ELSE 0 END) + SUM(CASE WHEN (ranked_followups.follow_up_status = 'Completed') THEN 1 ELSE 0 END) + SUM(CASE WHEN (ranked_followups.follow_up_status = 'Not interested') THEN 1 ELSE 0 END) + SUM(CASE WHEN (ranked_followups.follow_up_status = 'Under process' OR ranked_followups.follow_up_status = 'Document submitted' OR ranked_followups.follow_up_status = 'Additional info required') THEN 1 ELSE 0 END) + SUM(CASE WHEN (ranked_followups.follow_up_status = 'Rejected') THEN 1 ELSE 0 END)) as total_demands
-        from (
-            select  
-                _fuc.name_of_the_scheme,
-                _sc.milestone,
-                _fuc.follow_up_status,
-                _fuc.last_update_by,
-                ROW_NUMBER() OVER (PARTITION BY _fuc.parent,_fuc.name_of_the_scheme ORDER BY _fuc.last_update_date DESC) as rn
-            from
-                `tabFollow Up Child` as _fuc
-            INNER JOIN `tabScheme` AS _sc ON (_sc.name = _fuc.name_of_the_scheme)
-            WHERE
-                1=1 
-                {condition_str}
-        ) as ranked_followups
-        where ranked_followups.rn = 1 
-        group by 
-            ranked_followups.name_of_the_scheme,
-            ranked_followups.milestone,
-            ranked_followups.last_update_by
+        SELECT
+            ranked.name_of_the_scheme,
+            ranked.milestone,
+            ranked.last_update_by,
+            
+            SUM(CASE WHEN ranked.follow_up_status = 'Interested' THEN 1 ELSE 0 END) AS open_demands,
+            SUM(CASE WHEN ranked.follow_up_status = 'Completed' THEN 1 ELSE 0 END) AS completed_demands,
+            SUM(CASE WHEN ranked.follow_up_status = 'Not interested' THEN 1 ELSE 0 END) AS closed_demands,
+            SUM(CASE WHEN ranked.follow_up_status IN ('Under process', 'Document submitted', 'Additional info required') THEN 1 ELSE 0 END) AS submitted_demands,
+            SUM(CASE WHEN ranked.follow_up_status = 'Rejected' THEN 1 ELSE 0 END) AS rejected_demands,
+            
+            COUNT(*) AS total_demands
+
+        FROM (
+            SELECT 
+                fuc.name_of_the_scheme,
+                fuc.follow_up_status,
+                fuc.last_update_by,
+                fuc.parent,
+                sch.milestone,
+                ben.state,
+                ben.district,
+                ben.ward
+            FROM (
+                SELECT *,
+                    ROW_NUMBER() OVER (
+                        PARTITION BY parent, name_of_the_scheme
+                        ORDER BY last_update_date DESC
+                    ) AS rn
+                FROM "tabFollow Up Child"
+            ) fuc
+            JOIN "tabBeneficiary Profiling" ben ON ben.name = fuc.parent
+            JOIN "tabScheme" sch ON sch.name = fuc.name_of_the_scheme
+            WHERE fuc.rn = 1
+        ) ranked
+
+        GROUP BY 
+            ranked.name_of_the_scheme,
+            ranked.milestone,
+            ranked.last_update_by
+
+        ORDER BY 
+            ranked.name_of_the_scheme, ranked.milestone, ranked.last_update_by;
     """
     data = frappe.db.sql(sql_query, as_dict=True)
     return columns, data
