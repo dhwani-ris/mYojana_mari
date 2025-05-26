@@ -31,7 +31,7 @@ def execute(filters=None):
             "fieldname": "submitted_demands",
             "label": _("Submitted Demands"),
             "fieldtype": "Data",
-            "width": 160,
+            "width": 170,
         },
         {
             "fieldname": "completed_demands",
@@ -43,57 +43,63 @@ def execute(filters=None):
             "fieldname": "rejected_demands",
             "label": _("Rejected Demands"),
             "fieldtype": "Data",
-            "width": 130,
+            "width": 170,
         },
         {
             "fieldname": "closed_demands",
             "label": _("Closed Demands"),
             "fieldtype": "Data",
-            "width": 130,
+            "width": 170,
         },
     ]                 
     
 
-    # condition_str = ReportFilter.set_report_filters(filters, 'follow_up_date', True , '_fuc')
+    # condition_str = ReportFilter.set_report_filters(filters, 'follow_up_date', True , 'fuc')
     # condition_str = f"WHERE {condition_str}" if condition_str else ""
     condition_str = ""
     if filters.get("from_date") and filters.get("to_date"):
-        condition_str += f" AND _fuc.follow_up_date BETWEEN '{filters.get('from_date')}' AND '{filters.get('to_date')}'"
+        condition_str += f" AND fuc.follow_up_date BETWEEN '{filters.get('from_date')}' AND '{filters.get('to_date')}'"
     elif filters.get("from_date"):
-        condition_str += f" AND _fuc.follow_up_date >= '{filters.get('from_date')}'"
+        condition_str += f" AND fuc.follow_up_date >= '{filters.get('from_date')}'"
     elif filters.get("to_date"):
-        condition_str += f" AND _fuc.follow_up_date <= '{filters.get('to_date')}'"
+        condition_str += f" AND fuc.follow_up_date <= '{filters.get('to_date')}'"
     if filters.get('state'):
-        condition_str += f" AND ben_table.state = '{filters.get('state')}'"
+        condition_str += f" AND ben.state = '{filters.get('state')}'"
     
     sql_query = f"""
-        select 
-            COALESCE(ranked_followups.state_name, 'Unknown') AS state_name,
-            SUM(CASE WHEN (ranked_followups.follow_up_status = 'Interested') THEN 1 ELSE 0 END) as open_demands,
-            SUM(CASE WHEN (ranked_followups.follow_up_status = 'Completed') THEN 1 ELSE 0 END) as completed_demands, 
-            SUM(CASE WHEN (ranked_followups.follow_up_status = 'Not interested') THEN 1 ELSE 0 END) as closed_demands, 
-            SUM(CASE WHEN (ranked_followups.follow_up_status = 'Under process' OR ranked_followups.follow_up_status = 'Document submitted' OR ranked_followups.follow_up_status = 'Additional info required') THEN 1 ELSE 0 END) as submitted_demands, 
-            SUM(CASE WHEN (ranked_followups.follow_up_status = 'Rejected') THEN 1 ELSE 0 END) as rejected_demands, 
-            ( SUM(CASE WHEN (ranked_followups.follow_up_status = 'Interested') THEN 1 ELSE 0 END) + SUM(CASE WHEN (ranked_followups.follow_up_status = 'Completed') THEN 1 ELSE 0 END) + SUM(CASE WHEN (ranked_followups.follow_up_status = 'Not interested') THEN 1 ELSE 0 END) + SUM(CASE WHEN (ranked_followups.follow_up_status = 'Under process' OR ranked_followups.follow_up_status = 'Document submitted' OR ranked_followups.follow_up_status = 'Additional info required') THEN 1 ELSE 0 END) + SUM(CASE WHEN (ranked_followups.follow_up_status = 'Rejected') THEN 1 ELSE 0 END)) as total_demands 
-        from 
-            ( 
-                select 
-                    _fuc.name_of_the_scheme,
-                    _fuc.follow_up_status, 
-                    _fuc.last_update_by, 
-                    s.state_name,
-                    ROW_NUMBER() OVER (PARTITION BY  _fuc.parent,_fuc.name_of_the_scheme ORDER BY _fuc.last_update_date DESC) as rn 
-                from `tabFollow Up Child` as _fuc 
-                INNER JOIN `tabBeneficiary Profiling` as ben_table 
-                    ON (ben_table.name = _fuc.parent)
-                LEFT JOIN
-                    `tabState` s ON ben_table.state = s.name
-                where 1=1
-                    {condition_str}
-            ) as ranked_followups 
-        where ranked_followups.rn = 1 
+        select
+            COALESCE(s.state_name, 'Unknown') AS state_name,
+            SUM(CASE WHEN (ranked.follow_up_status = 'Interested') THEN 1 ELSE 0 END) as open_demands,
+            SUM(CASE WHEN (ranked.follow_up_status = 'Completed') THEN 1 ELSE 0 END) as completed_demands, 
+            SUM(CASE WHEN (ranked.follow_up_status = 'Not interested') THEN 1 ELSE 0 END) as closed_demands, 
+            SUM(CASE WHEN (ranked.follow_up_status = 'Under process' OR ranked.follow_up_status = 'Document submitted' OR ranked.follow_up_status = 'Additional info required') THEN 1 ELSE 0 END) as submitted_demands, 
+            SUM(CASE WHEN (ranked.follow_up_status = 'Rejected') THEN 1 ELSE 0 END) as rejected_demands, 
+            ( SUM(CASE WHEN (ranked.follow_up_status = 'Interested') THEN 1 ELSE 0 END) + SUM(CASE WHEN (ranked.follow_up_status = 'Completed') THEN 1 ELSE 0 END) + SUM(CASE WHEN (ranked.follow_up_status = 'Not interested') THEN 1 ELSE 0 END) + SUM(CASE WHEN (ranked.follow_up_status = 'Under process' OR ranked.follow_up_status = 'Document submitted' OR ranked.follow_up_status = 'Additional info required') THEN 1 ELSE 0 END) + SUM(CASE WHEN (ranked.follow_up_status = 'Rejected') THEN 1 ELSE 0 END)) as total_demands
+        FROM (
+            SELECT 
+                fuc.name_of_the_scheme,
+                fuc.follow_up_status,
+                fuc.last_update_by,
+                fuc.parent,
+                sch.milestone,
+                ben.state,
+                ben.district,
+                ben.ward
+            FROM (
+                SELECT *,
+                    ROW_NUMBER() OVER (
+                        PARTITION BY parent, name_of_the_scheme
+                        ORDER BY last_update_date DESC
+                    ) AS rn
+                FROM "tabFollow Up Child"
+            ) fuc
+            JOIN "tabBeneficiary Profiling" ben ON ben.name = fuc.parent
+            JOIN "tabScheme" sch ON sch.name = fuc.name_of_the_scheme
+            WHERE fuc.rn = 1 {condition_str}
+        ) ranked   
+        LEFT JOIN `tabState` s ON ranked.state = s.name
         group by 
-            COALESCE(ranked_followups.state_name, 'Unknown')
+            COALESCE(s.state_name, 'Unknown')
     """
 
 

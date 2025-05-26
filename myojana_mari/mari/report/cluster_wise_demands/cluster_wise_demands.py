@@ -43,42 +43,40 @@ def execute(filters=None):
             "fieldname": "rejected_demands",
             "label": _("Rejected Demands"),
             "fieldtype": "Data",
-            "width": 130,
+            "width": 170,
         },
         {
             "fieldname": "closed_demands",
             "label": _("Closed Demands"),
             "fieldtype": "Data",
-            "width": 130,
+            "width": 170,
         }
     ]
 
-    # condition_str = ReportFilter.set_report_filters(filters, 'follow_up_date', True , '_fuc')
+    # condition_str = ReportFilter.set_report_filters(filters, 'follow_up_date', True , 'fuc')
     # condition_str = f"WHERE {condition_str}" if condition_str else ""
     condition_str = ""
     if filters.get("from_date") and filters.get("to_date"):
-        condition_str += f" AND _fuc.follow_up_date BETWEEN '{filters.get('from_date')}' AND '{filters.get('to_date')}'"
+        condition_str += f" AND fuc.follow_up_date BETWEEN '{filters.get('from_date')}' AND '{filters.get('to_date')}'"
     elif filters.get("from_date"):
-        condition_str += f" AND _fuc.follow_up_date >= '{filters.get('from_date')}'"
+        condition_str += f" AND fuc.follow_up_date >= '{filters.get('from_date')}'"
     elif filters.get("to_date"):
-        condition_str += f" AND _fuc.follow_up_date <= '{filters.get('to_date')}'"
+        condition_str += f" AND fuc.follow_up_date <= '{filters.get('to_date')}'"
     if filters.get('state'):
-        condition_str += f" AND ben_table.state = '{filters.get('state')}'"
+        condition_str += f" AND ben.state = '{filters.get('state')}'"
     if filters.get('district'):
-        condition_str += f" AND ben_table.district = '{filters.get('district')}'"
+        condition_str += f" AND ben.district = '{filters.get('district')}'"
     if filters.get('block'):
-        condition_str += f" AND ben_table.block = '{filters.get('block')}'"
+        condition_str += f" AND ben.block = '{filters.get('block')}'"
     sql_query = f"""
             select
                 COALESCE(bl.block_name, 'Unknown') AS block_name,
-                
-            SUM(CASE WHEN (ranked.follow_up_status = 'Interested') THEN 1 ELSE 0 END) as open_demands,
-            SUM(CASE WHEN (ranked.follow_up_status = 'Completed') THEN 1 ELSE 0 END) as completed_demands, 
-            SUM(CASE WHEN (ranked.follow_up_status = 'Not interested') THEN 1 ELSE 0 END) as closed_demands, 
-            SUM(CASE WHEN (ranked.follow_up_status = 'Under process' OR ranked.follow_up_status = 'Document submitted' OR ranked.follow_up_status = 'Additional info required') THEN 1 ELSE 0 END) as submitted_demands, 
-            SUM(CASE WHEN (ranked.follow_up_status = 'Rejected') THEN 1 ELSE 0 END) as rejected_demands, 
-            ( SUM(CASE WHEN (ranked.follow_up_status = 'Interested') THEN 1 ELSE 0 END) + SUM(CASE WHEN (ranked.follow_up_status = 'Completed') THEN 1 ELSE 0 END) + SUM(CASE WHEN (ranked.follow_up_status = 'Not interested') THEN 1 ELSE 0 END) + SUM(CASE WHEN (ranked.follow_up_status = 'Under process' OR ranked.follow_up_status = 'Document submitted' OR ranked.follow_up_status = 'Additional info required') THEN 1 ELSE 0 END) + SUM(CASE WHEN (ranked.follow_up_status = 'Rejected') THEN 1 ELSE 0 END)) as total_demands
-
+                SUM(CASE WHEN (ranked.follow_up_status = 'Interested') THEN 1 ELSE 0 END) as open_demands,
+                SUM(CASE WHEN (ranked.follow_up_status = 'Completed') THEN 1 ELSE 0 END) as completed_demands, 
+                SUM(CASE WHEN (ranked.follow_up_status = 'Not interested') THEN 1 ELSE 0 END) as closed_demands, 
+                SUM(CASE WHEN (ranked.follow_up_status = 'Under process' OR ranked.follow_up_status = 'Document submitted' OR ranked.follow_up_status = 'Additional info required') THEN 1 ELSE 0 END) as submitted_demands, 
+                SUM(CASE WHEN (ranked.follow_up_status = 'Rejected') THEN 1 ELSE 0 END) as rejected_demands, 
+                ( SUM(CASE WHEN (ranked.follow_up_status = 'Interested') THEN 1 ELSE 0 END) + SUM(CASE WHEN (ranked.follow_up_status = 'Completed') THEN 1 ELSE 0 END) + SUM(CASE WHEN (ranked.follow_up_status = 'Not interested') THEN 1 ELSE 0 END) + SUM(CASE WHEN (ranked.follow_up_status = 'Under process' OR ranked.follow_up_status = 'Document submitted' OR ranked.follow_up_status = 'Additional info required') THEN 1 ELSE 0 END) + SUM(CASE WHEN (ranked.follow_up_status = 'Rejected') THEN 1 ELSE 0 END)) as total_demands
             FROM (
                 SELECT 
                     fuc.name_of_the_scheme,
@@ -99,11 +97,8 @@ def execute(filters=None):
                 ) fuc
                 JOIN "tabBeneficiary Profiling" ben ON ben.name = fuc.parent
                 JOIN "tabScheme" sch ON sch.name = fuc.name_of_the_scheme
-                WHERE fuc.rn = 1
-            ) ranked
-
-                
-                
+                WHERE fuc.rn = 1 {condition_str}
+            ) ranked   
             LEFT JOIN `tabBlock` bl ON ranked.ward = bl.name
             group by 
                 COALESCE(bl.block_name, 'Unknown')

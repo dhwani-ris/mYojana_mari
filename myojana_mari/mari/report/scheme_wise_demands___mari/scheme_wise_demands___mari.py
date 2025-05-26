@@ -57,17 +57,17 @@ def execute(filters=None):
             "fieldname": "rejected_demands",
             "label": _("Rejected Demands"),
             "fieldtype": "Data",
-            "width": 130,
+            "width": 170,
         },
         {
             "fieldname": "closed_demands",
             "label": _("Closed Demands"),
             "fieldtype": "Data",
-            "width": 130,
+            "width": 170,
         },
     ]
     user = frappe.session.user
-    condition_str = ReportFilter.set_report_filters(filters, 'follow_up_date', True , '_fuc')
+    condition_str = ReportFilter.set_report_filters(filters, 'follow_up_date', True , 'fuc')
     if condition_str:
         condition_str = f"AND {condition_str}"
     else:
@@ -80,7 +80,6 @@ def execute(filters=None):
             ranked.name_of_the_scheme,
             ranked.milestone,
             ranked.last_update_by,
-            
             SUM(CASE WHEN (ranked.follow_up_status = 'Interested') THEN 1 ELSE 0 END) as open_demands,
             SUM(CASE WHEN (ranked.follow_up_status = 'Completed') THEN 1 ELSE 0 END) as completed_demands, 
             SUM(CASE WHEN (ranked.follow_up_status = 'Not interested') THEN 1 ELSE 0 END) as closed_demands, 
@@ -93,6 +92,7 @@ def execute(filters=None):
                 fuc.name_of_the_scheme,
                 fuc.follow_up_status,
                 fuc.last_update_by,
+                fuc.follow_up_date,
                 fuc.parent,
                 sch.milestone,
                 ben.state,
@@ -108,14 +108,13 @@ def execute(filters=None):
             ) fuc
             JOIN "tabBeneficiary Profiling" ben ON ben.name = fuc.parent
             JOIN "tabScheme" sch ON sch.name = fuc.name_of_the_scheme
-            WHERE fuc.rn = 1
+            WHERE fuc.rn = 1 {condition_str}
         ) ranked
-
         GROUP BY 
             ranked.name_of_the_scheme,
             ranked.milestone,
             ranked.last_update_by
-
+        
         ORDER BY 
             ranked.name_of_the_scheme, ranked.milestone, ranked.last_update_by;
     """
