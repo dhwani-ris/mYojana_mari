@@ -79,7 +79,6 @@ def execute(filters=None):
         SELECT
             ranked.name_of_the_scheme,
             ranked.milestone,
-            ranked.last_update_by,
             SUM(CASE WHEN (ranked.follow_up_status = 'Interested') THEN 1 ELSE 0 END) as open_demands,
             SUM(CASE WHEN (ranked.follow_up_status = 'Completed') THEN 1 ELSE 0 END) as completed_demands, 
             SUM(CASE WHEN (ranked.follow_up_status = 'Not interested') THEN 1 ELSE 0 END) as closed_demands, 
@@ -112,11 +111,10 @@ def execute(filters=None):
         ) ranked
         GROUP BY 
             ranked.name_of_the_scheme,
-            ranked.milestone,
-            ranked.last_update_by
+            ranked.milestone
         
         ORDER BY 
-            ranked.name_of_the_scheme, ranked.milestone, ranked.last_update_by;
+            ranked.name_of_the_scheme, ranked.milestone;
     """
     data = frappe.db.sql(sql_query, as_dict=True)
     return columns, data
