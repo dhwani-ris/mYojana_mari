@@ -81,7 +81,9 @@ def execute(filters=None):
     if filters.get('district'):
         condition_str += f" AND ben.district = '{filters.get('district')}'"
     if filters.get('block'):
-        condition_str += f" AND ben.block = '{filters.get('block')}'"
+        condition_str += f" AND ben.ward = '{filters.get('block')}'"
+    if filters.get('village'):
+        condition_str += f" AND ben.name_of_the_settlement = '{filters.get('village')}'"
     if filters.get('status'):
         condition_str += f" AND fuc.follow_up_status = '{filters.get('status')}'"
     sql_query = f"""

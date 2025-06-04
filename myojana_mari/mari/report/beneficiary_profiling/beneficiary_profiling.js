@@ -44,6 +44,19 @@ var filters = [
 		}
 	},
 	{
+		"fieldname": "village",
+		"fieldtype": "Link",
+		"label": "Slum",
+		"options": "Village",
+		"get_query": function() {
+			return {
+				filters: {
+					"block": frappe.query_report.get_filter_value("block")
+				}
+			};
+		}
+	},
+	{
 		"fieldname":'status',
 		"fieldtype": "Select",
 		"label": "Status",

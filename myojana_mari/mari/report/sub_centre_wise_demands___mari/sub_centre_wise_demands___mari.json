@@ -9,7 +9,7 @@
  "idx": 8,
  "is_standard": "Yes",
  "letterhead": null,
- "modified": "2025-05-20 09:45:10.163542",
+ "modified": "2025-06-04 18:47:06.976717",
  "modified_by": "Administrator",
  "module": "Mari",
  "name": "Sub centre wise demands - mari",
@@ -30,6 +30,9 @@
   },
   {
    "role": "System Manager"
+  },
+  {
+   "role": "Sub-Centre"
   }
  ],
  "timeout": 0

@@ -4,6 +4,7 @@
 import frappe
 from frappe import _
 from myojana.utils.report_filter import ReportFilter
+from myojana_mari.api import get_user_role_permission
 
 
 def execute(filters=None):
@@ -66,15 +67,37 @@ def execute(filters=None):
             "width": 170,
         },
     ]
+    user_perm = get_user_role_permission()
+    state = user_perm.get('State')
+    district = user_perm.get('District')
+    block = user_perm.get('Block')
+    slum = user_perm.get('Village')
     user = frappe.session.user
-    condition_str = ReportFilter.set_report_filters(filters, 'follow_up_date', True , 'fuc')
-    if condition_str:
-        condition_str = f"AND {condition_str}"
-    else:
-        condition_str = ""
+    # condition_str = ReportFilter.set_report_filters(filters, 'follow_up_date', True , 'fuc')
+    # if condition_str:
+    #     condition_str = f"AND {condition_str}"
+    # else:
+    #     condition_str = ""
+    condition_str = ""
+    if filters.get("from_date") and filters.get("to_date"):
+        condition_str += f" AND fuc.follow_up_date BETWEEN '{filters.get('from_date')}' AND '{filters.get('to_date')}'"
+    elif filters.get("from_date"):
+        condition_str += f" AND fuc.follow_up_date >= '{filters.get('from_date')}'"
+    elif filters.get("to_date"):
+        condition_str += f" AND fuc.follow_up_date <= '{filters.get('to_date')}'"
+    if state:
+        condition_str += f" AND ben.state = '{state}'"
+    if district:
+        condition_str += f" AND ben.district = '{district}'"
+    if block:
+        condition_str += f" AND ben.ward = '{block}'"
+    if slum:
+        condition_str += f" AND ben.name_of_the_settlement = '{slum}'"
     # check user role
-    if 'Sub-Centre' in frappe.get_roles(user) and 'Administrator' not in frappe.get_roles(user):
-        condition_str += f" AND _fuc.last_update_by = '{user}'"
+    # if 'Sub-Centre' in frappe.get_roles(user) and 'Administrator' not in frappe.get_roles(user):
+    #     condition_str += f" AND fuc.last_update_by = '{user}'"
+    elif filters.get('modified_by'):
+        condition_str += f" AND fuc.last_update_by = '{filters.get('modified_by')}'"
     sql_query = f"""
         SELECT
             ranked.name_of_the_scheme,

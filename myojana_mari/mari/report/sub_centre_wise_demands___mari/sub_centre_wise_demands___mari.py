@@ -4,6 +4,7 @@
 import frappe
 from frappe import _
 from myojana.utils.report_filter import ReportFilter
+from myojana_mari.api import get_user_role_permission
 
 
 def execute(filters=None):
@@ -52,7 +53,11 @@ def execute(filters=None):
             "width": 170,
         }
     ]             
-    
+    user_perm = get_user_role_permission()
+    state = user_perm.get('State')
+    district = user_perm.get('District')
+    block = user_perm.get('Block')
+    slum = user_perm.get('Village')
 
     # condition_str = ReportFilter.set_report_filters(filters, 'follow_up_date', True , '_fuc')
     # condition_str = f"{condition_str}" if condition_str else "1=1"
@@ -63,8 +68,14 @@ def execute(filters=None):
         condition_str += f" AND fuc.follow_up_date >= '{filters.get('from_date')}'"
     elif filters.get("to_date"):
         condition_str += f" AND fuc.follow_up_date <= '{filters.get('to_date')}'"
-    if filters.get('state'):
-        condition_str += f" AND ben.state = '{filters.get('state')}'"
+    if filters.get('state') or state:
+        condition_str += f" AND ben.state = '{filters.get('state') or state}'"
+    if district:
+        condition_str += f" AND ben.district = '{district}'"
+    if block:
+        condition_str += f" AND ben.ward = '{block}'"
+    if slum:
+        condition_str += f" AND ben.name_of_the_settlement = '{slum}'"
 
     sql_query = f"""
             select
