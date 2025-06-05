@@ -67,14 +67,47 @@ def execute(filters=None):
         condition_str += f" AND fuc.follow_up_date >= '{filters.get('from_date')}'"
     elif filters.get("to_date"):
         condition_str += f" AND fuc.follow_up_date <= '{filters.get('to_date')}'"
-    if filters.get('state') or state:
-        condition_str += f" AND ben.state = '{filters.get('state') or state}'"
-    if filters.get('district') or district:
-        condition_str += f" AND ben.district = '{filters.get('district') or district}'"
-    if filters.get('block') or block:
-        condition_str += f" AND ben.ward = '{filters.get('block') or block}'"
-    if slum:
-        condition_str += f" AND ben.name_of_the_settlement = '{filters.get('slum') or slum}'"
+
+    # Handle state filter with multiple permissions
+    if filters.get('state'):
+        condition_str += f" AND ben.state = '{filters.get('state')}'"
+    elif state:
+        if isinstance(state, list):
+            state_list = "', '".join(state)
+            condition_str += f" AND ben.state IN ('{state_list}')"
+        else:
+            condition_str += f" AND ben.state = '{state}'"
+
+    # Handle district filter with multiple permissions
+    if filters.get('district'):
+        condition_str += f" AND ben.district = '{filters.get('district')}'"
+    elif district:
+        if isinstance(district, list):
+            district_list = "', '".join(district)
+            condition_str += f" AND ben.district IN ('{district_list}')"
+        else:
+            condition_str += f" AND ben.district = '{district}'"
+
+    # Handle block filter with multiple permissions
+    if filters.get('block'):
+        condition_str += f" AND ben.ward = '{filters.get('block')}'"
+    elif block:
+        if isinstance(block, list):
+            block_list = "', '".join(block)
+            condition_str += f" AND ben.ward IN ('{block_list}')"
+        else:
+            condition_str += f" AND ben.ward = '{block}'"
+
+    # Handle village/slum filter with multiple permissions
+    if filters.get('slum'):
+        condition_str += f" AND ben.name_of_the_settlement = '{filters.get('slum')}'"
+    elif slum:
+        if isinstance(slum, list):
+            slum_list = "', '".join(slum)
+            condition_str += f" AND ben.name_of_the_settlement IN ('{slum_list}')"
+        else:
+            condition_str += f" AND ben.name_of_the_settlement = '{slum}'"
+
     sql_query = f"""
             select
                 COALESCE(bl.block_name, 'Unknown') AS block_name,
