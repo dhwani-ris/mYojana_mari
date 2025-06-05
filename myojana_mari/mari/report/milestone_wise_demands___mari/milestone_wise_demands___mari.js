@@ -49,7 +49,21 @@ if(frappe.user_roles.some(role => ['MIS executive','CSC Member','Admin','Adminis
 					}
 				};
 			},
-		}
+		},
+		{
+			"fieldname": "village",
+			"fieldtype": "Link",
+			"label": "Slum",
+			"options": "Village",
+			"get_query": function() {
+				var block = frappe.query_report.get_filter_value('block');
+				return {
+					filters: {
+						'block': block
+					}
+				};	
+			}
+		}	
 	)
 }
 frappe.query_reports["Milestone-wise demands - mari"] = {

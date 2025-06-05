@@ -76,8 +76,8 @@ def execute(filters=None):
         condition_str += f" AND ben.district = '{filters.get('district') or district}'"
     if filters.get('block') or block:
         condition_str += f" AND ben.ward = '{filters.get('block') or block}'"
-    if slum:
-        condition_str += f" AND ben.name_of_the_settlement = '{slum}'"
+    if filters.get('village') or slum:
+        condition_str += f" AND ben.name_of_the_settlement = '{filters.get('village') or slum}'"
     sql_query = f"""
             select
                 ranked.milestone AS milestone_category,
