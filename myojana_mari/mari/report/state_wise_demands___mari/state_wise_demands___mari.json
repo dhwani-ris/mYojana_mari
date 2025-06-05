@@ -10,7 +10,7 @@
  "is_standard": "Yes",
  "json": "{}",
  "letterhead": null,
- "modified": "2025-05-26 15:05:16.068002",
+ "modified": "2025-06-05 13:55:02.084966",
  "modified_by": "Administrator",
  "module": "Mari",
  "name": "State-wise demands - mari",
@@ -25,9 +25,6 @@
   },
   {
    "role": "CSC Member"
-  },
-  {
-   "role": "Sub-Centre"
   },
   {
    "role": "MIS executive"

@@ -6,10 +6,10 @@
  "docstatus": 0,
  "doctype": "Report",
  "filters": [],
- "idx": 0,
+ "idx": 3,
  "is_standard": "Yes",
  "letterhead": null,
- "modified": "2025-04-09 16:22:48.450111",
+ "modified": "2025-06-05 13:53:38.353700",
  "modified_by": "Administrator",
  "module": "Mari",
  "name": "House type-wise beneficiaries - mari",
@@ -24,9 +24,6 @@
   },
   {
    "role": "CSC Member"
-  },
-  {
-   "role": "Sub-Centre"
   },
   {
    "role": "MIS executive"

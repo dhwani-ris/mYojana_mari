@@ -9,7 +9,7 @@
  "idx": 2,
  "is_standard": "Yes",
  "letterhead": null,
- "modified": "2025-06-04 18:30:56.452570",
+ "modified": "2025-06-05 13:53:07.602021",
  "modified_by": "Administrator",
  "module": "Mari",
  "name": "Cluster Wise Demands",
@@ -21,9 +21,6 @@
  "roles": [
   {
    "role": "Admin"
-  },
-  {
-   "role": "Sub-Centre"
   },
   {
    "role": "System Manager"

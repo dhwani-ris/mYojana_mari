@@ -31,7 +31,7 @@
  "is_hidden": 0,
  "label": "(U) Dashboards",
  "links": [],
- "modified": "2025-03-31 11:02:49.505735",
+ "modified": "2025-06-05 12:52:46.669611",
  "modified_by": "Administrator",
  "module": "Mari",
  "name": "(U) Dashboards",
@@ -41,12 +41,12 @@
    "number_card_name": "Total Demands for Citizenship Entitlement IDs"
   },
   {
-   "label": "Beneficiaries Registered (Today)",
-   "number_card_name": "Beneficiaries Registered (Today)"
+   "label": "Total demands",
+   "number_card_name": "Sum of total ascertaining demands mari"
   },
   {
-   "label": "Total demands",
-   "number_card_name": "Sum of Total_ascertaining_demands"
+   "label": "Beneficiaries Registered (Today)",
+   "number_card_name": "Beneficiaries Registered (Today)"
   },
   {
    "label": "Demands Exclusive of Citizenship IDs",

@@ -6,10 +6,10 @@
  "docstatus": 0,
  "doctype": "Report",
  "filters": [],
- "idx": 6,
+ "idx": 10,
  "is_standard": "Yes",
  "letterhead": null,
- "modified": "2025-04-09 15:55:54.720925",
+ "modified": "2025-06-05 13:56:31.772108",
  "modified_by": "Administrator",
  "module": "Mari",
  "name": "Milestone-wise demands - mari",
@@ -21,12 +21,6 @@
  "roles": [
   {
    "role": "Admin"
-  },
-  {
-   "role": "CSC Member"
-  },
-  {
-   "role": "Sub-Centre"
   },
   {
    "role": "MIS executive"

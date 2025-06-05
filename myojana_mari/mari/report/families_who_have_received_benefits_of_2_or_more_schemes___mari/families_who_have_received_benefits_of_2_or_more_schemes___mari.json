@@ -6,10 +6,10 @@
  "docstatus": 0,
  "doctype": "Report",
  "filters": [],
- "idx": 0,
+ "idx": 6,
  "is_standard": "Yes",
  "letterhead": null,
- "modified": "2025-03-31 10:49:41.221748",
+ "modified": "2025-06-05 13:58:30.762591",
  "modified_by": "Administrator",
  "module": "Mari",
  "name": "Families who have received benefits of 2 or more schemes - mari",
@@ -26,13 +26,13 @@
    "role": "CSC Member"
   },
   {
-   "role": "Sub-Centre"
-  },
-  {
    "role": "MIS executive"
   },
   {
    "role": "System Manager"
+  },
+  {
+   "role": "Sub-Centre"
   }
  ],
  "timeout": 0

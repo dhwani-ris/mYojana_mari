@@ -1,0 +1,23 @@
+{
+ "creation": "2025-06-05 12:51:55.563281",
+ "docstatus": 0,
+ "doctype": "Number Card",
+ "dynamic_filters_json": "{}",
+ "filters_json": "{}",
+ "function": "Count",
+ "idx": 0,
+ "is_public": 0,
+ "is_standard": 1,
+ "label": "Sum of total ascertaining demands mari",
+ "modified": "2025-06-05 12:51:55.563281",
+ "modified_by": "Administrator",
+ "module": "Mari",
+ "name": "Sum of total ascertaining demands mari",
+ "owner": "Administrator",
+ "report_field": "count",
+ "report_function": "Sum",
+ "report_name": "Total Demands Mari",
+ "show_percentage_stats": 1,
+ "stats_time_interval": "Daily",
+ "type": "Report"
+}

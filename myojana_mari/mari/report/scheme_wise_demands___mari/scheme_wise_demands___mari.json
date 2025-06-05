@@ -9,7 +9,7 @@
  "idx": 7,
  "is_standard": "Yes",
  "letterhead": null,
- "modified": "2025-06-04 17:27:01.491116",
+ "modified": "2025-06-05 13:56:51.241756",
  "modified_by": "Administrator",
  "module": "Mari",
  "name": "Scheme-wise demands - mari",
@@ -24,9 +24,6 @@
   },
   {
    "role": "CSC Member"
-  },
-  {
-   "role": "Sub-Centre"
   },
   {
    "role": "MIS executive"
